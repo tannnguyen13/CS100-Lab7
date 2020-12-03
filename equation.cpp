@@ -14,30 +14,70 @@ using namespace std;
 class Equation {
 	public:	
 		Base* parse(char** input, int length) {
-			Base* temp = new Op(input[1][0] - 48);
+			int k = 0;
+			int total = 0;
+			while(isdigit(input[1][k])) {
+				if(k > 0)
+					total *= 10;
+				total += input[1][k]-48;
+				k++;
+			}
+			Base *temp = new Op(total);
 			for(unsigned int i = 2; i < length;i++) {
+				k = 0;
+				total = 0;
 				if(input[i][0] == '+') {
-					Base* temp2 = new Op(input[i+1][0] - 48);
+					while(isdigit(input[i+1][k])) {
+						if(k > 0)
+							total *= 10;
+						total += input[i+1][k] - 48;
+						k++;
+					}
+					Base* temp2 = new Op(total);
 					temp = new Add(temp, temp2);
 					i++;
 				}
 				else if(input[i][0] == '-') {
-					Base* temp2 = new Op(input[i+1][0] - 48);
+					while(isdigit(input[i+1][k])) {
+						if(k > 0)
+							total *= 10;
+						total += input[i+1][k] - 48;
+						k++;
+					}	
+					Base* temp2 = new Op(total);
 					temp = new Sub(temp, temp2);
 					i++;
 				}
 				else if(input[i][0] == '/') {
-					Base* temp2 = new Op(input[i+1][0] - 48);
+					while(isdigit(input[i+1][k])) {
+						if(k > 0)
+							total *= 10;
+						total += input[i+1][k] - 48;
+						k++;
+					}
+					Base* temp2 = new Op(total);
 					temp = new Div(temp, temp2);
 					i++;
 				}
 				else if(input[i][0] == '*' && input[i][1] == '*') {
-					Base* temp2 = new Op(input[i+1][0] - 48);
+					while(isdigit(input[i+1][k])) {
+						if(k > 0)
+							total *= 10;
+						total += input[i+1][k] - 48;
+						k++;
+					}
+					Base* temp2 = new Op(total);
 					temp = new Pow(temp, temp2);
 					i++;
 				}
 				else if(input[i][0] == '*') {
-					Base* temp2 = new Op(input[i+1][0] - 48);
+					while(isdigit(input[i+1][k])) {
+						if(k > 0)
+							total *= 10;
+						total += input[i+1][k] - 48;
+						k++;
+					}
+					Base* temp2 = new Op(total);
 					temp = new Mult(temp, temp2);
 					i++;
 				}
