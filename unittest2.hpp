@@ -10,26 +10,23 @@
 #include "equation.cpp"
 
 TEST(MultTest, MultStringifyAndEvaluateNumbers) {
-    char** test = new char *[3];
-    test = {"2","*","1"};
-    Equation* Etest = new Equation();
-    EXPECT_EQ(Etest->parse(test, 3)->stringify(), "2.0 * 1.0");
-    EXPECT_EQ(Etest->parse(test, 3)->evaluate(), 2);
+    char* test[] = {"","2","*","1"};
+    Equation* test2 = new Equation();
+    EXPECT_EQ(test2->parse(test, 4)->stringify(), "2.0 * 1.0");
+    EXPECT_EQ(test2->parse(test, 4)->evaluate(), 2);
 }
 
 TEST(PowTest, PowStringifyAndEvaluateNumbers) {
-	char** test = new char *[3];
-	test = {"2","**","1"};
-	Equation* Etest = new Equation();
-	EXPECT_EQ(Etest->parse(test, 3)->stringify(), "2.0 ** 1.0");
-	EXPECT_EQ(Etest->parse(test, 3)->evaluate(), 2);
+	char* test[]  = {"","2","**","1"};
+	Equation* test2 = new Equation();
+	EXPECT_EQ(test2->parse(test, 4)->stringify(), "2.0 ** 1.0");
+	EXPECT_EQ(test2->parse(test, 4)->evaluate(), 2);
 }
 
 TEST(SubTest, SubStringifyAndEvaluateNumbers) {
-	char** test = new char*[3];
-	test = {"2","-","1"};
-	Equation* Etest = new Equation();
-	EXPECT_EQ(Etest->parse(test, 3)->stringify(), "2.0 - 1.0");
-	EXPECT_EQ(Etest->parse(test, 3)->evaluate(), 1);
+	char* test[] = {"","2","-","1"};
+	Equation* test2 = new Equation();
+	EXPECT_EQ(test2->parse(test, 4)->stringify(), "2.0 - 1.0");
+	EXPECT_EQ(test2->parse(test, 4)->evaluate(), 1);
 }
 #endif
