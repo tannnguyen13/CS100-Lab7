@@ -10,17 +10,43 @@
 using namespace std;
 class Equation {
 	public:	
-		if(length < 2)
-			return Op(*input[0]+48);
-		Op* op1  = new Op(*input[length-1]+48);
-		if(*input[length-2] == '+')
-			return new Add(parse(input, length-2), op1);
-		if(*input[length-2] == '-')
-                	return new Sub(parse(input, length-2), op1);
-		if(*input[length-2] == '*')
-                	return new Mult(parse(input, length-2), op1);
-		if(*input[length-2] == '/')
-                	return new Div(parse(input, length-2), op1);
+		Base* parse(char** input, int length) {
+			Base* temp = new Op(input[1][0] - 48);
+			for(unsigned int i = 2; i < length;i++) {
+				if(input[i][0] == '+') {
+					Base* temp2 = new Op(input[i+1][0] - 48);
+					temp = new Add(temp, temp2);
+					i++;
+				}
+				else if(input[i][0] == '-') {
+					Base* temp2 = new Op(input[i+1][0] - 48);
+					temp = new Sub(temp, temp2);
+					i++;
+				}
+				else if(input[i][0] == '*') {
+					Base* temp2 = new Op(input[i+1][0] - 48);
+					temp = new Mult(temp, temp2);
+					i++;
+				}
+				else if(input[i][0] == '/') {
+					Base* temp2 = new Op(input[i+1][0] - 48);
+					temp = new Div(temp, temp2);
+					i++;
+				}
+				else if(input[i][0] == "*" && input[i][1] == "*") {
+					Base* temp2 = new Op(input[i+1][0] - 48);
+					temp = new Pow(temp, temp2);
+					i++;
+				}
+				else {
+					std::cout << "Invalid Input" << endl;
+					delete temp;
+					temp = nullptr;
+					return temp;
+				}	
+			}
+			return temp;
+		}
 	}
 };
 
